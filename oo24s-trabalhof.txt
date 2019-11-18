@@ -1,0 +1,51 @@
+Create table quarto(
+	numero int not null primary key,
+	tipo varchar(10) not null,
+	qtd_camas int not null,
+	qtd_pessoas int not null,
+	valor decimal(5,2) not null
+);
+
+Create table cliente(
+	IdCliente int not null primary key,
+	nome varchar(100) not null,
+	endereco varchar(100) not null,
+	telefone varchar(9) not null,
+	email varchar(100) not null,
+	CPF varchar(11) not null,
+	RG varchar(9) not null,
+	passaporte int not null
+);
+
+Create table produto(
+	idProduto int not null primary key,
+	nome varchar(100) not null,
+	descrição varchar(250) not null,
+	categoria varchar(20) not null
+);
+
+Create table reserva(
+	idReserva int not null primary key,
+	quarto int not null REFERENCES quarto(numero),
+	cliente int not null REFERENCES cliente(idCliente),
+	hospedes int[] not null,
+	dataReserva date not null,
+	dataEntrada date not null,
+	dataSaida date not null,
+	motivo varchar(20) not null,
+	valordiaria decimal(5,2) not null
+);
+--drop table reserva
+
+Create table produtoConsumido(
+	produto int not null REFERENCES produto(idProduto),
+	consumidor int not null REFERENCES reserva(idReserva)
+);
+
+insert into quarto values(1,'Econômico',1,1,122.20);
+insert into cliente values(1,'joao silva','rua das flores 123',123456789,'a@a.com',12345678910,123456789,1233333);
+insert into produto values(1,'suco','suco de laranja','Produtos');
+insert into produto values(2,'massagem','massagem relaxante','Servicos');
+insert into reserva values(1,1,1,ARRAY[1],'2019-11-17','2019-11-17','2019-11-20','Turismo',122.20);
+insert into produtoConsumido values(2,1);
+insert into produtoConsumido values(1,1);
