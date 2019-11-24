@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="334.0" prefWidth="356.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.utfpr.pb.oo24s.controller.FXMLCadastroProdutoController">
+   <stylesheets>
+      <URL value="@/styles/style.css" />
+   </stylesheets>
+   <children>
+      <Label layoutX="165.0" layoutY="5.0" text="Id" />
+      <Label layoutX="27.0" layoutY="63.0" text="Nome do produto" />
+      <Button fx:id="buttonCancelar" layoutX="28.0" layoutY="296.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="133.0" text="Cancelar" />
+      <Button fx:id="buttonSalvar" layoutX="171.0" layoutY="296.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="170.0" text="Salvar" />
+      <TextField layoutX="107.0" layoutY="26.0" prefHeight="26.0" prefWidth="126.0" />
+      <TextField layoutX="24.0" layoutY="87.0" prefHeight="26.0" prefWidth="315.0" />
+      <TextArea layoutX="22.0" layoutY="212.0" prefHeight="68.0" prefWidth="315.0" />
+      <Label layoutX="25.0" layoutY="187.0" text="Descricao" />
+      <Separator layoutX="-1.0" layoutY="53.0" prefHeight="10.0" prefWidth="356.0" />
+      <Separator layoutX="-1.0" layoutY="280.0" prefHeight="10.0" prefWidth="356.0" />
+      <Label layoutX="25.0" layoutY="123.0" text="Categoria" />
+      <ComboBox layoutX="25.0" layoutY="147.0" prefHeight="26.0" prefWidth="315.0" />
+   </children>
+</AnchorPane>
