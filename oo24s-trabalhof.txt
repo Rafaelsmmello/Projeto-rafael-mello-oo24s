@@ -24,11 +24,12 @@ Create table produto(
 	categoria varchar(20) not null
 );
 
+
+CREATE SEQUENCE reserva_id_seq;
 Create table reserva(
-	idReserva int not null primary key,
+	idReserva bigint DEFAULT nextval('reserva_id_seq') primary key,
 	quarto int not null REFERENCES quarto(numero),
 	cliente int not null REFERENCES cliente(idCliente),
-	hospedes int[] not null,
 	dataReserva date not null,
 	dataEntrada date not null,
 	dataSaida date not null,
@@ -39,13 +40,21 @@ Create table reserva(
 
 Create table produtoConsumido(
 	produto int not null REFERENCES produto(idProduto),
-	consumidor int not null REFERENCES reserva(idReserva)
+	consumidor int not null REFERENCES reserva(idReserva),
+	datacompra date not null
 );
+
+select * from reserva as r join cliente as c on (r.cliente = c.idcliente) 
+join produtoconsumido as pc on (pc.reservaconsumidora = r.idreserva)
+join produto as p on (p.idproduto = pc.produto)
 
 insert into quarto values(1,'Econômico',1,1,122.20);
 insert into cliente values(1,'joao silva','rua das flores 123',123456789,'a@a.com',12345678910,123456789,1233333);
 insert into produto values(1,'suco','suco de laranja','Produtos');
 insert into produto values(2,'massagem','massagem relaxante','Servicos');
-insert into reserva values(1,1,1,ARRAY[1],'2019-11-17','2019-11-17','2019-11-20','Turismo',122.20);
 insert into produtoConsumido values(2,1);
 insert into produtoConsumido values(1,1);
+insert into reserva values(1,1,1,'2019-11-28','2019-11-28','2019-11-30','Turismo',132.50);
+
+login - 
+senha - 

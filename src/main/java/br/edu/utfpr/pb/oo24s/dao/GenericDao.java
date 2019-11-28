@@ -1,21 +1,24 @@
 package br.edu.utfpr.pb.oo24s.dao;
 
+import br.edu.utfpr.pb.oo24s.model.AbstractModel;
 import br.edu.utfpr.pb.oo24s.util.EntityManagerUtil;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
-public abstract class GenericDao <T, ID extends Serializable> {
+public abstract class GenericDao <T extends AbstractModel, ID extends Serializable> {
 
     protected EntityManager em;
     
+    @PersistenceContext(unitName = "oo24s-trabalhof")
     private Class<T> persistedClass;
     
     protected GenericDao() { }
@@ -23,6 +26,19 @@ public abstract class GenericDao <T, ID extends Serializable> {
     protected GenericDao(Class<T> persistedClass) {
         this.persistedClass = persistedClass;
         this.em = EntityManagerUtil.getEntityManager();
+    }
+    
+    public void save(T entity) {
+        EntityTransaction t = em.getTransaction();
+        t.begin();
+        em.persist(entity);
+        if (entity.getId() != null) {
+            em.merge(entity);
+        } else {
+            em.persist(entity);
+        }
+        em.flush();
+        t.commit();
     }
     
     public void insert(T entity) {
@@ -52,7 +68,6 @@ public abstract class GenericDao <T, ID extends Serializable> {
         query.from(persistedClass);
         return em.createQuery(query).getResultList();
     }
-    
     public void delete(ID id) {
         T entity = getById(id);
         EntityTransaction t = em.getTransaction();

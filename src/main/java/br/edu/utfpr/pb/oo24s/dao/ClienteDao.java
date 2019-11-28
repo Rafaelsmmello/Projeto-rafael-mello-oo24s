@@ -7,7 +7,11 @@ package br.edu.utfpr.pb.oo24s.dao;
 
 import br.edu.utfpr.pb.oo24s.model.Cliente;
 
-public class ClienteDao  extends GenericDao<Cliente, Long> {
+/**
+ *
+ * @author Rafael Mello
+ */
+public class ClienteDao extends GenericDao<Cliente, Long> {
 
     public ClienteDao() {
         super(Cliente.class);

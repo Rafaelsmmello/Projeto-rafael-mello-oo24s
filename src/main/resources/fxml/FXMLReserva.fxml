@@ -1,28 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.utfpr.pb.oo24s.controller.FXMLReservaController">
-    <stylesheets>
-        <URL value="@/styles/fxmlreserva.css" />
-    </stylesheets>
+<VBox fx:id="vboxPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="351.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.utfpr.pb.oo24s.controller.FXMLReservaController">
    <children>
-      <ComboBox layoutX="47.0" layoutY="62.0" prefWidth="150.0" />
-      <ComboBox layoutX="373.0" layoutY="62.0" prefWidth="150.0" />
-      <Label layoutX="47.0" layoutY="45.0" text="Cliente" />
-      <Label layoutX="373.0" layoutY="45.0" text="Quarto" />
-      <Label layoutX="47.0" layoutY="115.0" text="Selecione a quantidade de hóspedes" />
-      <Spinner layoutX="48.0" layoutY="133.0" prefHeight="26.0" prefWidth="194.0" />
-      <DatePicker layoutX="35.0" layoutY="209.0" />
-      <DatePicker layoutX="35.0" layoutY="256.0" />
-      <DatePicker layoutX="35.0" layoutY="311.0" />
-      <Label layoutX="34.0" layoutY="192.0" text="Data de reserva" />
-      <Label layoutX="33.0" layoutY="238.0" text="Data de entrada" />
-      <Label layoutX="40.0" layoutY="293.0" text="Data de saída" />
+      <AnchorPane id="AnchorPane" prefHeight="401.0" prefWidth="530.0" styleClass="mainFxmlClass">
+         <stylesheets>
+            <URL value="@/styles/fxmlreserva.css" />
+         </stylesheets>
+         <children>
+            <Pane layoutX="1.0" prefHeight="351.0" prefWidth="828.0" style="-fx-background-color: #ded9da;" />
+            <ComboBox fx:id="cbCliente" layoutX="72.0" layoutY="75.0" prefHeight="26.0" prefWidth="194.0" />
+            <ComboBox fx:id="cbQuarto" layoutX="342.0" layoutY="75.0" prefHeight="26.0" prefWidth="174.0" />
+            <Label layoutX="74.0" layoutY="53.0" text="Cliente" />
+            <Label layoutX="342.0" layoutY="53.0" text="Quarto" />
+            <Label layoutX="72.0" layoutY="114.0" text="Selecione a quantidade de hóspedes" />
+            <DatePicker fx:id="tfDataReserva" layoutX="342.0" layoutY="188.0" />
+            <DatePicker fx:id="tfDataEntrada" layoutX="72.0" layoutY="250.0" />
+            <DatePicker fx:id="tfDataSaida" layoutX="342.0" layoutY="250.0" />
+            <Label layoutX="341.0" layoutY="170.0" text="Data de reserva" />
+            <Label layoutX="74.0" layoutY="232.0" text="Data de entrada" />
+            <Label layoutX="341.0" layoutY="232.0" text="Data de saída" />
+            <ComboBox fx:id="cbMotivo" layoutX="342.0" layoutY="132.0" prefHeight="26.0" prefWidth="174.0" />
+            <Label layoutX="342.0" layoutY="114.0" text="Motivo da hospedagem" />
+            <Label layoutX="72.0" layoutY="170.0" text="Valor da diária" />
+            <TextField fx:id="tfDiaria" layoutX="72.0" layoutY="187.0" prefHeight="26.0" prefWidth="174.0" />
+            <ListView fx:id="list" editable="true" layoutX="581.0" layoutY="87.0" prefHeight="165.0" prefWidth="154.0" />
+            <Label layoutX="581.0" layoutY="60.0" text="Hóspedes" />
+            <Button fx:id="buttonSalvar" layoutX="648.0" layoutY="265.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="86.0" text="Confirmar" />
+            <Button fx:id="buttonVoltar" layoutX="581.0" layoutY="266.0" mnemonicParsing="false" text="Voltar" />
+            <Button fx:id="buttonRecarregar" layoutX="220.0" layoutY="132.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="6.0" text="Button" />
+            <TextField fx:id="tfQuantidade" layoutX="72.0" layoutY="132.0" prefHeight="26.0" prefWidth="141.0" />
+            <Separator layoutX="550.0" layoutY="65.0" orientation="VERTICAL" prefHeight="227.0" prefWidth="5.0" />
+            <Label layoutX="71.0" layoutY="14.0" prefHeight="35.0" prefWidth="668.0" text="Tela de Check-in" textAlignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</VBox>

@@ -6,6 +6,7 @@
 package br.edu.utfpr.pb.oo24s.model;
 
 import br.edu.utfpr.pb.oo24s.converter.TipoQuartoConverter;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
@@ -14,10 +15,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Quarto {
+public class Quarto  implements AbstractModel{
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int numero;
+    private Long numero;
     
     @Convert(converter = TipoQuartoConverter.class)
     @Column(nullable = false)
@@ -35,11 +37,11 @@ public class Quarto {
     public Quarto() {
     }
 
-    public int getId() {
+    public Long getId() {
         return numero;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.numero = id;
     }
 
@@ -78,7 +80,7 @@ public class Quarto {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 47 * hash + this.numero;
+        hash = 47 * hash + Objects.hashCode(this.numero);
         return hash;
     }
 

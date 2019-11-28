@@ -5,6 +5,7 @@
  */
 package br.edu.utfpr.pb.oo24s.model;
 
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,10 +13,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Cliente {
+public class Cliente implements AbstractModel{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int IdCliente;
+    private Long IdCliente;
     
     @Column(nullable = false, length = 100)
     private String nome;
@@ -41,11 +42,11 @@ public class Cliente {
     public Cliente() {
     }
 
-    public int getIdCliente() {
+    public Long getId() {
         return IdCliente;
     }
 
-    public void setIdCliente(int IdCliente) {
+    public void setIdCliente(Long IdCliente) {
         this.IdCliente = IdCliente;
     }
 
@@ -107,8 +108,8 @@ public class Cliente {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + this.IdCliente;
+        int hash = 5;
+        hash = 29 * hash + Objects.hashCode(this.IdCliente);
         return hash;
     }
 

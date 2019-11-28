@@ -6,6 +6,7 @@
 package br.edu.utfpr.pb.oo24s.model;
 
 import br.edu.utfpr.pb.oo24s.converter.CategoriaConverter;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
@@ -14,10 +15,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Produto {
+public class Produto implements AbstractModel{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idProduto;
+    private Long idProduto;
     
     @Column(nullable = false, length = 100)
     private String nome;
@@ -32,11 +33,11 @@ public class Produto {
     public Produto() {
     }
 
-    public int getIdProduto() {
+    public Long getId() {
         return idProduto;
     }
 
-    public void setIdProduto(int idProduto) {
+    public void setIdProduto(Long idProduto) {
         this.idProduto = idProduto;
     }
 
@@ -63,11 +64,11 @@ public class Produto {
     public void setCategoria(ECategoria categoria) {
         this.categoria = categoria;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 67 * hash + this.idProduto;
+        hash = 23 * hash + Objects.hashCode(this.idProduto);
         return hash;
     }
 

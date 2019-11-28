@@ -6,19 +6,25 @@
 package br.edu.utfpr.pb.oo24s.model;
 
 import br.edu.utfpr.pb.oo24s.converter.MotivoConverter;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Reserva {
+public class Reserva implements AbstractModel{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idReserva;
+    private Long idReserva;
     
     @Column(nullable = false)
     private int quarto;
@@ -26,17 +32,18 @@ public class Reserva {
     @Column(nullable = false)
     private int cliente;
     
+    @OneToMany
     @Column(nullable = false)
-    private int hospedes;
+    private List<Cliente> hospedes;
     
     @Column(nullable = false)
-    private Date dataReserva;
+    private LocalDate dataReserva;
     
     @Column(nullable = false)
-    private Date dataEntrada;
+    private LocalDate dataEntrada;
     
     @Column(nullable = false)
-    private Date dataSaida;
+    private LocalDate dataSaida;
     
     @Convert(converter = MotivoConverter.class)
     @Column(nullable = false)
@@ -48,11 +55,11 @@ public class Reserva {
     public Reserva() {
     }
 
-    public int getIdReserva() {
+    public Long getId() {
         return idReserva;
     }
 
-    public void setIdReserva(int idReserva) {
+    public void setId(Long idReserva) {
         this.idReserva = idReserva;
     }
 
@@ -72,37 +79,38 @@ public class Reserva {
         this.cliente = cliente;
     }
 
-    public int getHospedes() {
+    public List<Cliente> getHospedes() {
         return hospedes;
     }
 
-    public void setHospedes(int hospedes) {
+    public void setHospedes(List<Cliente> hospedes) {
         this.hospedes = hospedes;
     }
-
-    public Date getDataReserva() {
+    public LocalDate getDataReserva() {
         return dataReserva;
     }
 
-    public void setDataReserva(Date dataReserva) {
+    public void setDataReserva(LocalDate dataReserva) {
         this.dataReserva = dataReserva;
     }
 
-    public Date getDataEntrada() {
+    public LocalDate getDataEntrada() {
         return dataEntrada;
     }
 
-    public void setDataEntrada(Date dataEntrada) {
+    public void setDataEntrada(LocalDate dataEntrada) {
         this.dataEntrada = dataEntrada;
     }
 
-    public Date getDataSaida() {
+    public LocalDate getDataSaida() {
         return dataSaida;
     }
 
-    public void setDataSaida(Date dataSaida) {
+    public void setDataSaida(LocalDate dataSaida) {
         this.dataSaida = dataSaida;
     }
+
+    
 
     public EMotivo getMotivo() {
         return motivo;
@@ -119,16 +127,15 @@ public class Reserva {
     public void setValordiaria(double valordiaria) {
         this.valordiaria = valordiaria;
     }
-    
-    
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 23 * hash + this.idReserva;
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.idReserva);
         return hash;
     }
-
+    
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -146,6 +153,5 @@ public class Reserva {
         }
         return true;
     }
-    
     
 }

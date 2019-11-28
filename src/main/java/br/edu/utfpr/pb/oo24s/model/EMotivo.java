@@ -11,9 +11,9 @@ package br.edu.utfpr.pb.oo24s.model;
  */
 public enum EMotivo {
     
-    TRABALHO (11),
-    PASSEIO(22),
-    TURISMO(22);
+    TRABALHO (1),
+    PASSEIO(2),
+    TURISMO(3);
     
     private final Integer id;
 

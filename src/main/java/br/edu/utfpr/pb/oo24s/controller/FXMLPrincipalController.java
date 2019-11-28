@@ -7,6 +7,7 @@ package br.edu.utfpr.pb.oo24s.controller;
  */
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
@@ -36,9 +38,16 @@ public class FXMLPrincipalController implements Initializable {
     @FXML
     private Button buttonUsuarios;
     @FXML
+    private Button buttonCompras;
+    @FXML
     private Button buttonRelatorio;
     @FXML
     private VBox vboxPrincipal;
+    @FXML
+    private VBox vbox;
+    @FXML
+    private DatePicker tfData;
+    
     
     /**
      * Initializes the controller class.
@@ -50,11 +59,52 @@ public class FXMLPrincipalController implements Initializable {
                 loadCheckin();
             }
         );
+        this.buttonCheckout.setOnAction(
+            (t) -> {
+                loadCheckout();
+            }
+        );
+        this.buttonHospedes.setOnAction(
+            (t) -> {
+                loadHospedes();
+            }
+        );
+        this.buttonProdutos.setOnAction(
+            (t) -> {
+                loadProdutos();
+            }
+        );
+        this.buttonUsuarios.setOnAction(
+            (t) -> {
+                loadUsuarios();
+            }
+        );
+        this.buttonCompras.setOnAction(
+            (t) -> {
+                loadCompras();
+            }
+        );
+        
+        tfData = new DatePicker(LocalDate.now());
+        tfData.setValue(LocalDate.now());
     }
 
     private void loadCheckin() {
         try {
+            
             setDataPane(fadeAnimate("/fxml/FXMLReserva.fxml") );
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(" .: JavaFX :. ");
+            alert.setHeaderText("Atenção, ocorreu um erro!");
+            alert.setContentText("Falha ao abrir a tela de checkin.");
+            alert.showAndWait();
+        }
+    }
+    private void loadCheckout() {
+        try {
+            setDataPane(fadeAnimate("/fxml/FXMLReserva.fxml") ); //alterar para fxml de saída
         } catch (Exception e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -64,9 +114,56 @@ public class FXMLPrincipalController implements Initializable {
             alert.showAndWait();
         }
     }
-    
+    private void loadHospedes() {
+        try {
+            setDataPane(fadeAnimate("/fxml/FXMLCadastroCliente.fxml") );
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(" .: JavaFX :. ");
+            alert.setHeaderText("Atenção, ocorreu um erro!");
+            alert.setContentText("Falha ao abrir a tela de cadastro.");
+            alert.showAndWait();
+        }
+    }
+    private void loadUsuarios() {
+        try {
+            setDataPane(fadeAnimate("/fxml/FXMLCadastroUsuarios.fxml") );
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(" .: JavaFX :. ");
+            alert.setHeaderText("Atenção, ocorreu um erro!");
+            alert.setContentText("Falha ao abrir a tela de cadastro.");
+            alert.showAndWait();
+        }
+    }
+    private void loadProdutos() {
+        try {
+            setDataPane(fadeAnimate("/fxml/FXMLCadastroProdutos.fxml") );
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(" .: JavaFX :. ");
+            alert.setHeaderText("Atenção, ocorreu um erro!");
+            alert.setContentText("Falha ao abrir a tela de cadastro.");
+            alert.showAndWait();
+        }
+    }
+    private void loadCompras() {
+        try {
+            setDataPane(fadeAnimate("/fxml/FXMLComprasController.fxml") );
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(" .: JavaFX :. ");
+            alert.setHeaderText("Atenção, ocorreu um erro!");
+            alert.setContentText("Falha ao abrir a tela de cadastro.");
+            alert.showAndWait();
+        }
+    }
     private void setDataPane(Node node) {
-        vboxPrincipal.getChildren().setAll(node);
+        vbox.getChildren().setAll(node);
     }
 
     private VBox fadeAnimate(String url) throws IOException {
