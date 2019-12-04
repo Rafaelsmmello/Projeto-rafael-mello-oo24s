@@ -1,10 +1,14 @@
 package br.edu.utfpr.pb.oo24s.controller;
 
 import br.edu.utfpr.pb.oo24s.dao.ClienteDao;
+import br.edu.utfpr.pb.oo24s.dao.QuartoDao;
 import br.edu.utfpr.pb.oo24s.dao.ReservaDao;
 import br.edu.utfpr.pb.oo24s.model.Cliente;
+import br.edu.utfpr.pb.oo24s.model.Quarto;
 import br.edu.utfpr.pb.oo24s.model.EMotivo;
 import br.edu.utfpr.pb.oo24s.model.Reserva;
+import br.edu.utfpr.pb.oo24s.model.Usuario;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
@@ -25,6 +29,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import javax.swing.JFormattedTextField;
@@ -63,20 +68,33 @@ public class FXMLReservaController implements Initializable {
     @FXML
     private TextField tfQuantidade;
     @FXML
+    private TextField tfUsuario;
+    @FXML
     private ListView list;
+    @FXML
+    private TextField tfNome;
+
     // lista de hospedes
+    List<Reserva> reservas = new ArrayList<>();
     List<Cliente> clientes = new ArrayList<>();
+    List<Quarto> quartos = new ArrayList<>();
+    List<Cliente> hospedes = new ArrayList<>();
     ObservableList<String> items = FXCollections.observableArrayList();
-    
+
     Reserva reserva = new Reserva();
     ReservaDao reservaDao = new ReservaDao();
+    QuartoDao quartoDao = new QuartoDao();
+    ClienteDao clienteDao = new ClienteDao();
     private Stage stage;
+    int q = 0;
+
+    Usuario usuario;// = new Usuario();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.reserva = new Reserva();
         this.reservaDao = new ReservaDao();
-        
+
         this.buttonVoltar.setOnAction(
                 (t) -> {
                     loadVoltar();
@@ -93,34 +111,57 @@ public class FXMLReservaController implements Initializable {
                     save();
                 }
         );
+        setUsuarioAutenticado(usuario);
     }
 
     public void loadCampos() {
-        List<String> quartos = new ArrayList<>();
-        List<String> motivos = new ArrayList<>();
+        List<EMotivo> motivos = new ArrayList<>();
 
-        //clientes.add("1");
-        //clientes.add("2");
-        quartos.add("1");
-        motivos.add("Trabalho");
-        motivos.add("Passeio");
-        motivos.add("Turismo");
-        
+        motivos.add(EMotivo.PASSEIO);
+        motivos.add(EMotivo.TRABALHO);
+        motivos.add(EMotivo.TURISMO);
+
         ClienteDao clienteDao = new ClienteDao();
-        
         clientes = clienteDao.getAll();
-        
-        
-        List<Long> clientesid = new ArrayList<Long>();
-        for (int i = 0; i < clientes.size(); i++) {
+        List<Long> clientesid = new ArrayList<>();
+        int i;
+        for (i = 0; i < clientes.size(); i++) {
             clientesid.add(clientes.get(i).getId());
         }
-        
+
+        ReservaDao reservaDao = new ReservaDao();
+        reservas = reservaDao.getAll();
+        List<Long> mostraquarto = new ArrayList<>();
+        List<Integer> reservasid = new ArrayList<>();
+        for (i = 0; i < reservas.size(); i++) {
+            reservasid.add(Integer.parseInt(reservas.get(i).getQuarto().getId().toString()));
+        }
+
+        QuartoDao quartoDao = new QuartoDao();
+        quartos = quartoDao.getAll();
+        List<Long> quartosid = new ArrayList<>();
+        List<Integer> iguais = new ArrayList<>();
+        int existe;
+        int x = 0;
+        for (i = 0; i < quartos.size(); i++) {
+            existe = -1;
+            quartosid.add(quartos.get(i).getId());
+
+            for (int j = 0; j < reservasid.size(); j++) {
+                if (reservasid.get(j).equals(Integer.parseInt(quartosid.get(i).toString()))) {
+                    existe = i;
+                    break;
+                }
+            }
+            if (existe == -1) {
+                mostraquarto.add(quartos.get(i).getId());
+            }
+        }
+
         cbCliente.setItems(FXCollections.observableArrayList(clientesid));
-        cbQuarto.setItems(FXCollections.observableArrayList(quartos));
+        cbQuarto.setItems(FXCollections.observableArrayList(mostraquarto));
         cbMotivo.setItems(FXCollections.observableArrayList(motivos));
-        
-        tfDiaria.setText("122.20");
+
         DateFormat format = new SimpleDateFormat("dd--MMMM--yyyy");
         JFormattedTextField dateTextField = new JFormattedTextField(format);
     }
@@ -157,45 +198,60 @@ public class FXMLReservaController implements Initializable {
 
     private void loadAtualizaList() {
         for (int i = 0; i < Integer.parseInt(tfQuantidade.getText()); i++) {
-            if(i==0){
+            if (i == 0) {
                 String str = JOptionPane.showInputDialog("Informe o id do cliente");
-                items.add(str+" - cliente");
+                Cliente cliente = this.clienteDao.getById(Long.parseLong(str));
+                hospedes.add(cliente);
+                items.add(str + " - cliente");
             } else {
-                String str = JOptionPane.showInputDialog("Informe o id do hospede "+i);
+                String str = JOptionPane.showInputDialog("Informe o id do hospede " + i);
                 items.add(str);
+                Cliente cliente = this.clienteDao.getById(Long.parseLong(str));
+                hospedes.add(cliente);
             }
+
         }
+        tfDiaria.setText(String.valueOf(quartos.get(q).getValor()));
+
         list.setItems(items);
         System.out.println(tfDataReserva.getValue());
     }
-    
+
     public void setDialogStage(Stage stage) {
         this.stage = stage;
     }
-    
+
     @FXML
     private void save() {
-        System.out.println(cbCliente.getValue().toString()+"\n");
-        System.out.println(cbMotivo.getValue().toString()+"\n");
-        System.out.println(tfQuantidade.getText()+"\n");
-        System.out.println(tfDiaria.getText()+"\n");
-        System.out.println(tfDataReserva.getValue().toString()+"\n");
-        System.out.println(tfDataEntrada.getValue().toString()+"\n");
-        System.out.println(tfDataSaida.getValue().toString()+"\n");
+        Cliente cliente = new Cliente();
+        cliente = clienteDao.getById(Long.parseLong(cbCliente.getValue().toString()));
+        Quarto quarto = new Quarto();
+        quarto = quartoDao.getById(Long.parseLong(cbQuarto.getValue().toString()));
         
-        reserva.setCliente(Integer.parseInt(cbCliente.getValue().toString()));
+        reserva.setCliente(cliente);
         reserva.setValordiaria(Double.parseDouble(tfDiaria.getText()));
-        reserva.setQuarto(Integer.parseInt(cbQuarto.getValue().toString()));
-        reserva.setHospedes(clientes); //aqui está pegando todos os clientes!
+        reserva.setQuarto(quarto);
+        reserva.setHospedes(hospedes);
         reserva.setDataReserva(tfDataReserva.getValue());
         reserva.setDataEntrada(tfDataEntrada.getValue());
         reserva.setDataSaida(tfDataSaida.getValue());
-        reserva.setMotivo(EMotivo.TURISMO);
-        
+        reserva.setMotivo((EMotivo) cbMotivo.getValue());
+        reserva.setUsuario(this.usuario);
         this.reservaDao.save(reserva);
-        
+
         //this.stage.close();
-       
     }
 
+    /*private void CarregaUsuario() {
+        FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(this.getClass().getResource("/fxml/FXMLPrincipal.fxml"));
+                FXMLPrincipalController controller = loader.getController();
+                this.usuario = controller.getUsuarioAutenticado();
+                tfUsuario.setText(usuario.getId().toString());
+    }*/
+    void setUsuarioAutenticado(Usuario usuario) {
+        this.usuario = usuario;
+        System.out.println(usuario.getId());
+        tfUsuario.setText(usuario.getId().toString());
+    }
 }

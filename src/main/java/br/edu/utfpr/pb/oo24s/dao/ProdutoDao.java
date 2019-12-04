@@ -6,10 +6,19 @@
 package br.edu.utfpr.pb.oo24s.dao;
 
 import br.edu.utfpr.pb.oo24s.model.Produto;
+import javax.persistence.Query;
 
 public class ProdutoDao extends GenericDao<Produto, Long> {
 
     public ProdutoDao() {
         super(Produto.class);
+    }
+    
+    public Produto findByDescricaoQuery(String descricao){
+        Query query = em.createNamedQuery(
+                Produto.FIND_BY_DESCRICAO);
+        query.setParameter("descricao", descricao);
+        
+        return (Produto) query.getSingleResult();
     }
 }

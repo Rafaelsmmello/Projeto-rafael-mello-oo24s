@@ -23,7 +23,7 @@
             <Pane layoutX="1.0" prefHeight="351.0" prefWidth="828.0" style="-fx-background-color: #ded9da;" />
             <ComboBox fx:id="cbCliente" layoutX="72.0" layoutY="75.0" prefHeight="26.0" prefWidth="194.0" />
             <ComboBox fx:id="cbQuarto" layoutX="342.0" layoutY="75.0" prefHeight="26.0" prefWidth="174.0" />
-            <Label layoutX="74.0" layoutY="53.0" text="Cliente" />
+            <Label layoutX="74.0" layoutY="53.0" text="Código do Cliente" />
             <Label layoutX="342.0" layoutY="53.0" text="Quarto" />
             <Label layoutX="72.0" layoutY="114.0" text="Selecione a quantidade de hóspedes" />
             <DatePicker fx:id="tfDataReserva" layoutX="342.0" layoutY="188.0" />
@@ -48,6 +48,8 @@
                   <Font size="24.0" />
                </font>
             </Label>
+            <TextField fx:id="tfUsuario" layoutX="584.0" layoutY="32.0" />
+            <Label layoutX="581.0" layoutY="14.0" text="Usuário" />
          </children>
       </AnchorPane>
    </children>

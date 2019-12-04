@@ -17,12 +17,11 @@ import javax.persistence.Id;
 @Entity
 public class Quarto  implements AbstractModel{
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long numero;
     
     @Convert(converter = TipoQuartoConverter.class)
-    @Column(nullable = false)
+    @Column(name = "tipo", nullable = false)
     private ETipoQuarto tipoQuarto;
     
     @Column(nullable = false)

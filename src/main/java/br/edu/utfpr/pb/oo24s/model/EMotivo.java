@@ -11,21 +11,21 @@ package br.edu.utfpr.pb.oo24s.model;
  */
 public enum EMotivo {
     
-    TRABALHO (1),
-    PASSEIO(2),
-    TURISMO(3);
+    TRABALHO("Trabalho"),
+    PASSEIO("Passeio"),
+    TURISMO("Turismo");
     
-    private final Integer id;
+    private final String id;
 
-    EMotivo(Integer id) {
+    EMotivo(String id) {
         this.id = id;
     }
     
-    public Integer getId() {
+    public String getId() {
         return this.id;
     }
     
-    public static EMotivo findById(Integer id) {
+    public static EMotivo findById(String id) {
         for (EMotivo EMotivo : EMotivo.values()) {
             if (EMotivo.getId().equals(id)) return EMotivo;
         }

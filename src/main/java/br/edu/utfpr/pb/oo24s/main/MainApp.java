@@ -12,7 +12,8 @@ public class MainApp extends Application{
     
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/FXMLPrincipal.fxml"));
+        
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/FXMLLogin.fxml"));
         Parent root = loader.load();
         stage.setScene(new Scene(root));
         stage.setTitle("Sistema Hotel");

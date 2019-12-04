@@ -6,15 +6,15 @@ import javax.persistence.Convert;
 
 @Convert
 public class TipoQuartoConverter implements 
-                    AttributeConverter<ETipoQuarto, Integer>{
+                    AttributeConverter<ETipoQuarto, String>{
 
     @Override
-    public Integer convertToDatabaseColumn(ETipoQuarto value) {
+    public String convertToDatabaseColumn(ETipoQuarto value) {
         return value.getId();
     }
 
     @Override
-    public ETipoQuarto convertToEntityAttribute(Integer value) {
+    public ETipoQuarto convertToEntityAttribute(String value) {
         return ETipoQuarto.findById(value);
     }
     

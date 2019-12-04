@@ -5,11 +5,15 @@
  */
 package br.edu.utfpr.pb.oo24s.dao;
 
-import br.edu.utfpr.pb.oo24s.model.Cliente;
- 
-public class ClienteDao extends GenericDao<Cliente, Long> {
+import br.edu.utfpr.pb.oo24s.model.Endereco;
 
-    public ClienteDao() {
-        super(Cliente.class);
+/**
+ *
+ * @author Rafael Mello
+ */
+public class EnderecoDao extends GenericDao<Endereco, Long> {
+
+    public EnderecoDao() {
+        super(Endereco.class);
     }
 }

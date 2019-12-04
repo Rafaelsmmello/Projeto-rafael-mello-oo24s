@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Cliente implements AbstractModel{
@@ -25,7 +27,7 @@ public class Cliente implements AbstractModel{
     private String endereco;
     
     @Column(nullable = false,length = 9)
-    private int telefone;
+    private Long telefone;
     
     @Column(nullable = false, length = 100)
     private String email;
@@ -37,15 +39,15 @@ public class Cliente implements AbstractModel{
     private String rg;
     
     @Column(nullable = false)
-    private int passaporte;
-
+    private String passaporte;
+    
     public Cliente() {
     }
 
     public Long getId() {
         return IdCliente;
     }
-
+    
     public void setIdCliente(Long IdCliente) {
         this.IdCliente = IdCliente;
     }
@@ -53,7 +55,7 @@ public class Cliente implements AbstractModel{
     public String getNome() {
         return nome;
     }
-
+    
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -64,14 +66,6 @@ public class Cliente implements AbstractModel{
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
-    }
-
-    public int getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(int telefone) {
-        this.telefone = telefone;
     }
 
     public String getEmail() {
@@ -98,11 +92,19 @@ public class Cliente implements AbstractModel{
         this.rg = rg;
     }
 
-    public int getPassaporte() {
+    public Long getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(Long telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getPassaporte() {
         return passaporte;
     }
 
-    public void setPassaporte(int passaporte) {
+    public void setPassaporte(String passaporte) {
         this.passaporte = passaporte;
     }
 

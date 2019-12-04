@@ -10,21 +10,21 @@ package br.edu.utfpr.pb.oo24s.model;
  * @author Rafael Mello
  */
 public enum ETipoQuarto {
-    ECONOMICO(11),
-    SUPERIOR(22),
-    LUXO(33);
+    ECONOMICO("Economico"),
+    SUPERIOR("Superior"),
+    LUXO("Luxo");
     
-    private final Integer id;
+    private final String id;
 
-    ETipoQuarto(Integer id) {
+    ETipoQuarto(String id) {
         this.id = id;
     }
     
-    public Integer getId() {
+    public String getId() {
         return this.id;
     }
     
-    public static ETipoQuarto findById(Integer id) {
+    public static ETipoQuarto findById(String id) {
         for (ETipoQuarto tipoContato : ETipoQuarto.values()) {
             if (tipoContato.getId().equals(id)) return tipoContato;
         }

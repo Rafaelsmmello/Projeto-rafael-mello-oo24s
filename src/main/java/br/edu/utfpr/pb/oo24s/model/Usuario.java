@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -53,6 +54,9 @@ public class Usuario implements AbstractModel, Serializable{
             + "obrigatório!")
     @Column(nullable = false)
     private LocalDate dataNascimento;
+    @Lob
+    @Column()
+    private byte[] foto;
     
     public Long getId() {
         return id;
@@ -62,6 +66,14 @@ public class Usuario implements AbstractModel, Serializable{
         this.id = id;
     }
 
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+    
     public String getNome() {
         return nome;
     }

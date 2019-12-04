@@ -6,10 +6,7 @@
 package br.edu.utfpr.pb.oo24s.model;
 
 import br.edu.utfpr.pb.oo24s.converter.MotivoConverter;
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -18,7 +15,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Reserva implements AbstractModel{
@@ -26,11 +26,11 @@ public class Reserva implements AbstractModel{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idReserva;
     
-    @Column(nullable = false)
-    private int quarto;
+    @OneToOne
+    private Quarto quarto;
     
-    @Column(nullable = false)
-    private int cliente;
+    @OneToOne
+    private Cliente cliente;
     
     @OneToMany
     @Column(nullable = false)
@@ -51,6 +51,9 @@ public class Reserva implements AbstractModel{
     
     @Column(nullable = false)
     private double valordiaria;
+    
+    @ManyToOne
+    private Usuario usuario;
 
     public Reserva() {
     }
@@ -63,19 +66,27 @@ public class Reserva implements AbstractModel{
         this.idReserva = idReserva;
     }
 
-    public int getQuarto() {
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Quarto getQuarto() {
         return quarto;
     }
 
-    public void setQuarto(int quarto) {
+    public void setQuarto(Quarto quarto) {
         this.quarto = quarto;
     }
 
-    public int getCliente() {
+    public Cliente getCliente() {
         return cliente;
     }
 
-    public void setCliente(int cliente) {
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 

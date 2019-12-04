@@ -9,15 +9,15 @@ import br.edu.utfpr.pb.oo24s.model.ECategoria;
 import javax.persistence.AttributeConverter;
 
 public class CategoriaConverter implements
-        AttributeConverter<ECategoria, Integer>{
+        AttributeConverter<ECategoria, String>{
 
     @Override
-    public Integer convertToDatabaseColumn(ECategoria value) {
+    public String convertToDatabaseColumn(ECategoria value) {
         return value.getId();
     }
 
     @Override
-    public ECategoria convertToEntityAttribute(Integer value) {
+    public ECategoria convertToEntityAttribute(String value) {
         return ECategoria.findById(value);
     }
     

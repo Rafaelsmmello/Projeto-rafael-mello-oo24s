@@ -5,6 +5,8 @@ package br.edu.utfpr.pb.oo24s.controller;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import br.edu.utfpr.pb.oo24s.model.Usuario;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -14,11 +16,17 @@ import javafx.fxml.Initializable;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -26,7 +34,7 @@ import javafx.util.Duration;
  * @author Rafael Mello
  */
 public class FXMLPrincipalController implements Initializable {
-    
+
     @FXML
     private Button buttonCheckin;
     @FXML
@@ -47,52 +55,76 @@ public class FXMLPrincipalController implements Initializable {
     private VBox vbox;
     @FXML
     private DatePicker tfData;
-    
-    
+    @FXML
+    private TextField tfNome;
+    @FXML
+    private ImageView imageview;
+    private Usuario usuario;
+
+    public void setUsuarioAutenticado(Usuario usuario) {
+        this.usuario = usuario;
+        tfNome.setText(usuario.getNome());
+        try {
+            if (usuario.getFoto() != null) {
+                Image image = new Image(
+                        new ByteArrayInputStream(
+                                usuario.getFoto())
+                );
+                imageview.setImage(image);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "usuario nao tem imagem");
+            e.printStackTrace();
+        }
+    }
+
+    public Usuario getUsuarioAutenticado() {
+        return usuario;
+    }
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.buttonCheckin.setOnAction(
-            (t) -> {
-                loadCheckin();
-            }
+                (t) -> {
+                    loadCheckin();
+                }
         );
         this.buttonCheckout.setOnAction(
-            (t) -> {
-                loadCheckout();
-            }
+                (t) -> {
+                    loadCheckout();
+                }
         );
         this.buttonHospedes.setOnAction(
-            (t) -> {
-                loadHospedes();
-            }
+                (t) -> {
+                    loadHospedes();
+                }
         );
         this.buttonProdutos.setOnAction(
-            (t) -> {
-                loadProdutos();
-            }
+                (t) -> {
+                    loadProdutos();
+                }
         );
         this.buttonUsuarios.setOnAction(
-            (t) -> {
-                loadUsuarios();
-            }
+                (t) -> {
+                    loadUsuarios();
+                }
         );
         this.buttonCompras.setOnAction(
-            (t) -> {
-                loadCompras();
-            }
+                (t) -> {
+                    loadCompras();
+                }
         );
-        
         tfData = new DatePicker(LocalDate.now());
         tfData.setValue(LocalDate.now());
     }
 
-    private void loadCheckin() {
+    private void loadCheckin2() {
         try {
-            
-            setDataPane(fadeAnimate("/fxml/FXMLReserva.fxml") );
+
+            setDataPane(fadeAnimate("/fxml/FXMLReserva.fxml"));
         } catch (Exception e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -102,9 +134,38 @@ public class FXMLPrincipalController implements Initializable {
             alert.showAndWait();
         }
     }
+
+    @FXML
+    private void loadCheckin() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(
+                    this.getClass()
+                            .getResource("/fxml/FXMLReserva.fxml"));
+            VBox v = (VBox) loader.load();
+
+            FadeTransition ft = new FadeTransition(Duration.millis(1500));
+            ft.setNode(v);
+            ft.setFromValue(0.1);
+            ft.setToValue(1);
+            ft.setCycleCount(1);
+            ft.setAutoReverse(false);
+            ft.play();
+
+            vbox.getChildren().setAll(v);
+            FXMLReservaController controller
+                    = loader.getController();
+            controller.setUsuarioAutenticado(usuario);
+            setDataPane(fadeAnimate("/fxml/FXMLReserva.fxml"));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void loadCheckout() {
         try {
-            setDataPane(fadeAnimate("/fxml/FXMLReserva.fxml") ); //alterar para fxml de saída
+            setDataPane(fadeAnimate("/fxml/FXMLReserva.fxml")); //alterar para fxml de saída
         } catch (Exception e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -114,9 +175,10 @@ public class FXMLPrincipalController implements Initializable {
             alert.showAndWait();
         }
     }
+
     private void loadHospedes() {
         try {
-            setDataPane(fadeAnimate("/fxml/FXMLCadastroCliente.fxml") );
+            setDataPane(fadeAnimate("/fxml/FXMLClienteLista.fxml"));
         } catch (Exception e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -126,9 +188,10 @@ public class FXMLPrincipalController implements Initializable {
             alert.showAndWait();
         }
     }
+
     private void loadUsuarios() {
         try {
-            setDataPane(fadeAnimate("/fxml/FXMLCadastroUsuarios.fxml") );
+            setDataPane(fadeAnimate("/fxml/FXMLUsuarioLista.fxml"));
         } catch (Exception e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -138,9 +201,10 @@ public class FXMLPrincipalController implements Initializable {
             alert.showAndWait();
         }
     }
+
     private void loadProdutos() {
         try {
-            setDataPane(fadeAnimate("/fxml/FXMLCadastroProdutos.fxml") );
+            setDataPane(fadeAnimate("/fxml/FXMLProdutoLista.fxml"));
         } catch (Exception e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -150,9 +214,10 @@ public class FXMLPrincipalController implements Initializable {
             alert.showAndWait();
         }
     }
+
     private void loadCompras() {
         try {
-            setDataPane(fadeAnimate("/fxml/FXMLComprasController.fxml") );
+            setDataPane(fadeAnimate("/fxml/FXMLCompras.fxml"));
         } catch (Exception e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -162,12 +227,14 @@ public class FXMLPrincipalController implements Initializable {
             alert.showAndWait();
         }
     }
+
     private void setDataPane(Node node) {
         vbox.getChildren().setAll(node);
     }
 
     private VBox fadeAnimate(String url) throws IOException {
         VBox v = (VBox) FXMLLoader.load(this.getClass().getResource(url));
+
         FadeTransition ft = new FadeTransition(Duration.millis(1500));
         ft.setNode(v);
         ft.setFromValue(0.1);
@@ -177,5 +244,5 @@ public class FXMLPrincipalController implements Initializable {
         ft.play();
         return v;
     }
-    
+
 }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="431.0" prefWidth="809.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.utfpr.pb.oo24s.controller.FXMLClienteListaController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" VBox.vgrow="NEVER">
+         <children>
+            <Button fx:id="buttonNovo" mnemonicParsing="false" onAction="#newRecord" prefHeight="26.0" prefWidth="254.0" text="Novo">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets left="20.0" right="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="buttonEdit" mnemonicParsing="false" onAction="#edit" prefHeight="26.0" prefWidth="250.0" text="Editar">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="buttonRemover" mnemonicParsing="false" onAction="#delete" prefHeight="26.0" prefWidth="246.0" text="Remover" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+      <TableView fx:id="tableData" fixedCellSize="24.0" prefHeight="400.0" prefWidth="524.0" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+         <columns>
+            <TableColumn fx:id="columnId" editable="false" maxWidth="269.60002440214157" minWidth="57.60000532865524" prefWidth="103.20001524686813" text="Código" />
+            <TableColumn fx:id="columnNome" editable="false" maxWidth="410.40000915527344" minWidth="0.0" prefWidth="265.6000213623047" resizable="false" text="Nome" />
+            <TableColumn fx:id="columnCpf" minWidth="0.0" prefWidth="150.39996337890625" resizable="false" text="Cpf" />
+            <TableColumn fx:id="columnTelefone" minWidth="8.79998779296875" prefWidth="166.4000244140625" resizable="false" text="Telefone" />
+            <TableColumn fx:id="columnRg" prefWidth="147.20001220703125" resizable="false" text="Rg" />
+         </columns>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </TableView>
+   </children>
+</VBox>

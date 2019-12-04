@@ -11,10 +11,10 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Rectangle?>
 
 <VBox fx:id="vboxPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.utfpr.pb.oo24s.controller.FXMLPrincipalController">
    <children>
@@ -54,6 +54,15 @@
                         </AnchorPane>
                      </content>
                   </TitledPane>
+                  <TitledPane animated="false" prefHeight="186.0" prefWidth="586.0" text="Compras">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="598.0">
+                           <children>
+                              <Button fx:id="buttonCompras" layoutX="205.0" layoutY="27.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="193.0" text="Comprar produto/serviço" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </TitledPane>
                   <TitledPane animated="false" prefHeight="70.0" prefWidth="607.0" text="Cadastros">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -65,23 +74,16 @@
                         </AnchorPane>
                      </content>
                   </TitledPane>
-                  <TitledPane animated="false" prefHeight="186.0" prefWidth="586.0" text="Compras">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="598.0">
-                           <children>
-                              <Button fx:id="buttonCompras" layoutX="205.0" layoutY="27.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="193.0" text="Comprar produto/serviço" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </TitledPane>
                </panes>
             </Accordion>
             <Separator layoutX="6.0" layoutY="214.0" prefHeight="4.0" prefWidth="209.0" />
-            <Circle fill="WHITE" layoutX="110.0" layoutY="132.0" radius="41.0" stroke="BLACK" strokeType="INSIDE" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ededed" height="18.0" layoutX="93.0" layoutY="144.0" stroke="WHITE" strokeType="INSIDE" width="36.0" />
-            <Circle fill="#ededed" layoutX="111.0" layoutY="126.0" radius="18.0" stroke="WHITE" strokeType="INSIDE" />
             <TextField fx:id="tfNome" alignment="CENTER" editable="false" layoutX="70.0" layoutY="173.0" prefHeight="26.0" prefWidth="82.0" text="Funcionario" />
             <Separator layoutX="221.0" layoutY="216.0" prefHeight="4.0" prefWidth="606.0" />
+            <ImageView fx:id="imageview" fitHeight="65.0" fitWidth="71.0" layoutX="76.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../Downloads/585e4bf3cb11b227491c339a.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <VBox fx:id="vbox" prefHeight="351.0" prefWidth="828.0" />

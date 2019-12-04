@@ -13,15 +13,15 @@ import javax.persistence.AttributeConverter;
  * @author Rafael Mello
  */
 public class MotivoConverter implements 
-                    AttributeConverter<EMotivo, Integer>{
+                    AttributeConverter<EMotivo, String>{
 
     @Override
-    public Integer convertToDatabaseColumn(EMotivo value) {
+    public String convertToDatabaseColumn(EMotivo value) {
         return value.getId();
     }
 
     @Override
-    public EMotivo convertToEntityAttribute(Integer value) {
+    public EMotivo convertToEntityAttribute(String value) {
         return EMotivo.findById(value);
     }
     
