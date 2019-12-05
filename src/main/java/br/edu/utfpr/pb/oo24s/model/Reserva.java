@@ -12,6 +12,7 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,10 +27,12 @@ public class Reserva implements AbstractModel{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idReserva;
     
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "quarto_id")
     private Quarto quarto;
     
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
     
     @OneToMany
@@ -120,8 +123,6 @@ public class Reserva implements AbstractModel{
     public void setDataSaida(LocalDate dataSaida) {
         this.dataSaida = dataSaida;
     }
-
-    
 
     public EMotivo getMotivo() {
         return motivo;

@@ -3,16 +3,20 @@ package br.edu.utfpr.pb.oo24s.model;
 import br.edu.utfpr.pb.oo24s.converter.BooleanConverter;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob; 
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -58,8 +62,20 @@ public class Usuario implements AbstractModel, Serializable{
     @Column()
     private byte[] foto;
     
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id")
+    private List<Reserva> reserva;
+    
     public Long getId() {
         return id;
+    }
+
+    public List<Reserva> getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(List<Reserva> reserva) {
+        this.reserva = reserva;
     }
 
     public void setId(Long id) {

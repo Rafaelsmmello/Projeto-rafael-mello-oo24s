@@ -20,36 +20,36 @@
             <URL value="@/styles/fxmlreserva.css" />
          </stylesheets>
          <children>
-            <Pane layoutX="1.0" prefHeight="351.0" prefWidth="828.0" style="-fx-background-color: #ded9da;" />
+            <Pane layoutX="1.0" prefHeight="351.0" prefWidth="828.0" style="-fx-background-color: #ded9da;">
+               <children>
+                  <DatePicker fx:id="tfDataEntrada" layoutX="68.0" layoutY="256.0" prefHeight="25.0" prefWidth="194.0" />
+                  <Label layoutX="70.0" layoutY="238.0" text="Data de entrada" />
+                  <Label layoutX="68.0" layoutY="176.0" text="Valor da diária" />
+                  <TextField fx:id="tfDiaria" layoutX="68.0" layoutY="193.0" prefHeight="26.0" prefWidth="194.0" />
+                  <ComboBox fx:id="cbLista" layoutX="68.0" layoutY="137.0" prefHeight="25.0" prefWidth="167.0" />
+                  <Button fx:id="buttonRecarregar" layoutX="240.0" layoutY="137.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="6.0" text="Button" />
+               </children></Pane>
             <ComboBox fx:id="cbCliente" layoutX="72.0" layoutY="75.0" prefHeight="26.0" prefWidth="194.0" />
             <ComboBox fx:id="cbQuarto" layoutX="342.0" layoutY="75.0" prefHeight="26.0" prefWidth="174.0" />
             <Label layoutX="74.0" layoutY="53.0" text="Código do Cliente" />
             <Label layoutX="342.0" layoutY="53.0" text="Quarto" />
-            <Label layoutX="72.0" layoutY="114.0" text="Selecione a quantidade de hóspedes" />
+            <Label layoutX="72.0" layoutY="114.0" text="Selecione os clientes que serão hospedados" />
             <DatePicker fx:id="tfDataReserva" layoutX="342.0" layoutY="188.0" />
-            <DatePicker fx:id="tfDataEntrada" layoutX="72.0" layoutY="250.0" />
             <DatePicker fx:id="tfDataSaida" layoutX="342.0" layoutY="250.0" />
             <Label layoutX="341.0" layoutY="170.0" text="Data de reserva" />
-            <Label layoutX="74.0" layoutY="232.0" text="Data de entrada" />
             <Label layoutX="341.0" layoutY="232.0" text="Data de saída" />
             <ComboBox fx:id="cbMotivo" layoutX="342.0" layoutY="132.0" prefHeight="26.0" prefWidth="174.0" />
             <Label layoutX="342.0" layoutY="114.0" text="Motivo da hospedagem" />
-            <Label layoutX="72.0" layoutY="170.0" text="Valor da diária" />
-            <TextField fx:id="tfDiaria" layoutX="72.0" layoutY="187.0" prefHeight="26.0" prefWidth="174.0" />
             <ListView fx:id="list" editable="true" layoutX="581.0" layoutY="87.0" prefHeight="165.0" prefWidth="154.0" />
             <Label layoutX="581.0" layoutY="60.0" text="Hóspedes" />
             <Button fx:id="buttonSalvar" layoutX="648.0" layoutY="265.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="86.0" text="Confirmar" />
             <Button fx:id="buttonVoltar" layoutX="581.0" layoutY="266.0" mnemonicParsing="false" text="Voltar" />
-            <Button fx:id="buttonRecarregar" layoutX="220.0" layoutY="132.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="6.0" text="Button" />
-            <TextField fx:id="tfQuantidade" layoutX="72.0" layoutY="132.0" prefHeight="26.0" prefWidth="141.0" />
             <Separator layoutX="550.0" layoutY="65.0" orientation="VERTICAL" prefHeight="227.0" prefWidth="5.0" />
             <Label layoutX="71.0" layoutY="14.0" prefHeight="35.0" prefWidth="668.0" text="Tela de Check-in" textAlignment="CENTER">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="tfUsuario" layoutX="584.0" layoutY="32.0" />
-            <Label layoutX="581.0" layoutY="14.0" text="Usuário" />
          </children>
       </AnchorPane>
    </children>

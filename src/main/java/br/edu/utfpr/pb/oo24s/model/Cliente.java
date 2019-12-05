@@ -6,12 +6,13 @@
 package br.edu.utfpr.pb.oo24s.model;
 
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -41,11 +42,22 @@ public class Cliente implements AbstractModel{
     @Column(nullable = false)
     private String passaporte;
     
+    @OneToOne(mappedBy = "cliente")
+    private Reserva reserva;
+    
     public Cliente() {
     }
 
     public Long getId() {
         return IdCliente;
+    }
+
+    public Reserva getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
     }
     
     public void setIdCliente(Long IdCliente) {

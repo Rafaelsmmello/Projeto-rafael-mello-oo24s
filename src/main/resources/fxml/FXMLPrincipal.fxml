@@ -77,9 +77,9 @@
                </panes>
             </Accordion>
             <Separator layoutX="6.0" layoutY="214.0" prefHeight="4.0" prefWidth="209.0" />
-            <TextField fx:id="tfNome" alignment="CENTER" editable="false" layoutX="70.0" layoutY="173.0" prefHeight="26.0" prefWidth="82.0" text="Funcionario" />
+            <TextField fx:id="tfNome" alignment="CENTER" editable="false" layoutX="19.0" layoutY="187.0" prefHeight="26.0" prefWidth="175.0" text="Funcionario" />
             <Separator layoutX="221.0" layoutY="216.0" prefHeight="4.0" prefWidth="606.0" />
-            <ImageView fx:id="imageview" fitHeight="65.0" fitWidth="71.0" layoutX="76.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageview" fitHeight="93.0" fitWidth="94.0" layoutX="60.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../../../Downloads/585e4bf3cb11b227491c339a.png" />
                </image>

@@ -54,6 +54,8 @@ public class FXMLReservaController implements Initializable {
     @FXML
     public ComboBox cbCliente;
     @FXML
+    public ComboBox cbLista;
+    @FXML
     private ComboBox cbQuarto;
     @FXML
     private ComboBox cbMotivo;
@@ -75,6 +77,7 @@ public class FXMLReservaController implements Initializable {
     private TextField tfNome;
 
     // lista de hospedes
+    List<Long> clientesid = new ArrayList<>();
     List<Reserva> reservas = new ArrayList<>();
     List<Cliente> clientes = new ArrayList<>();
     List<Quarto> quartos = new ArrayList<>();
@@ -88,7 +91,7 @@ public class FXMLReservaController implements Initializable {
     private Stage stage;
     int q = 0;
 
-    Usuario usuario;// = new Usuario();
+    Usuario usuario;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -111,7 +114,7 @@ public class FXMLReservaController implements Initializable {
                     save();
                 }
         );
-        setUsuarioAutenticado(usuario);
+        //setUsuarioAutenticado(usuario);
     }
 
     public void loadCampos() {
@@ -123,7 +126,6 @@ public class FXMLReservaController implements Initializable {
 
         ClienteDao clienteDao = new ClienteDao();
         clientes = clienteDao.getAll();
-        List<Long> clientesid = new ArrayList<>();
         int i;
         for (i = 0; i < clientes.size(); i++) {
             clientesid.add(clientes.get(i).getId());
@@ -158,6 +160,7 @@ public class FXMLReservaController implements Initializable {
             }
         }
 
+        cbLista.setItems(FXCollections.observableArrayList(clientesid));
         cbCliente.setItems(FXCollections.observableArrayList(clientesid));
         cbQuarto.setItems(FXCollections.observableArrayList(mostraquarto));
         cbMotivo.setItems(FXCollections.observableArrayList(motivos));
@@ -165,10 +168,10 @@ public class FXMLReservaController implements Initializable {
         DateFormat format = new SimpleDateFormat("dd--MMMM--yyyy");
         JFormattedTextField dateTextField = new JFormattedTextField(format);
     }
+    
 
     private void loadVoltar() {
         try {
-
             setDataPane(fadeAnimate("/fxml/FXMLPrincipal.fxml"));
         } catch (Exception e) {
             e.printStackTrace();
@@ -197,21 +200,13 @@ public class FXMLReservaController implements Initializable {
     }
 
     private void loadAtualizaList() {
-        for (int i = 0; i < Integer.parseInt(tfQuantidade.getText()); i++) {
-            if (i == 0) {
-                String str = JOptionPane.showInputDialog("Informe o id do cliente");
-                Cliente cliente = this.clienteDao.getById(Long.parseLong(str));
-                hospedes.add(cliente);
-                items.add(str + " - cliente");
-            } else {
-                String str = JOptionPane.showInputDialog("Informe o id do hospede " + i);
-                items.add(str);
-                Cliente cliente = this.clienteDao.getById(Long.parseLong(str));
-                hospedes.add(cliente);
-            }
-
-        }
-        tfDiaria.setText(String.valueOf(quartos.get(q).getValor()));
+        
+        String str = cbLista.getValue().toString();
+        Cliente cliente = this.clienteDao.getById(Long.parseLong(str));
+        hospedes.add(cliente);
+        items.add(cliente.getNome());
+        
+        tfDiaria.setText(String.valueOf(quartos.get(0).getValor()));
 
         list.setItems(items);
         System.out.println(tfDataReserva.getValue());
@@ -236,7 +231,7 @@ public class FXMLReservaController implements Initializable {
         reserva.setDataEntrada(tfDataEntrada.getValue());
         reserva.setDataSaida(tfDataSaida.getValue());
         reserva.setMotivo((EMotivo) cbMotivo.getValue());
-        reserva.setUsuario(this.usuario);
+        reserva.setUsuario(usuario);
         this.reservaDao.save(reserva);
 
         //this.stage.close();
@@ -249,9 +244,9 @@ public class FXMLReservaController implements Initializable {
                 this.usuario = controller.getUsuarioAutenticado();
                 tfUsuario.setText(usuario.getId().toString());
     }*/
+    
     void setUsuarioAutenticado(Usuario usuario) {
         this.usuario = usuario;
         System.out.println(usuario.getId());
-        tfUsuario.setText(usuario.getId().toString());
     }
 }

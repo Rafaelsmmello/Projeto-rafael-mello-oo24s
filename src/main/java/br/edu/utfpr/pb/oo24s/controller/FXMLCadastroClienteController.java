@@ -92,6 +92,7 @@ public class FXMLCadastroClienteController implements Initializable {
             cliente.setPassaporte(tfPassaporte.getText());
             cliente.setRg(tfRg.getText());
             cliente.setTelefone(Long.parseLong(tfTelefone.getText()));
+            cliente.setEndereco(taEndereco.getText());
         if (this.clienteDao.isValid(cliente)) {
             this.clienteDao.save(cliente);
             this.dialogStage.close();
