@@ -50,6 +50,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
+            <TextField fx:id="tfUsuario" disable="true" layoutX="584.0" layoutY="19.0" visible="false" />
          </children>
       </AnchorPane>
    </children>

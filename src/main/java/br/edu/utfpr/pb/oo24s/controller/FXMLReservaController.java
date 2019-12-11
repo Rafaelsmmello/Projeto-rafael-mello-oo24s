@@ -8,7 +8,6 @@ import br.edu.utfpr.pb.oo24s.model.Quarto;
 import br.edu.utfpr.pb.oo24s.model.EMotivo;
 import br.edu.utfpr.pb.oo24s.model.Reserva;
 import br.edu.utfpr.pb.oo24s.model.Usuario;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
@@ -29,12 +28,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import javax.swing.JFormattedTextField;
-import javax.swing.JOptionPane;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -91,13 +89,14 @@ public class FXMLReservaController implements Initializable {
     private Stage stage;
     int q = 0;
 
-    Usuario usuario;
+    Usuario usuario;     
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.reserva = new Reserva();
         this.reservaDao = new ReservaDao();
-
+        this.usuario = new Usuario();
+        
         this.buttonVoltar.setOnAction(
                 (t) -> {
                     loadVoltar();
@@ -233,20 +232,13 @@ public class FXMLReservaController implements Initializable {
         reserva.setMotivo((EMotivo) cbMotivo.getValue());
         reserva.setUsuario(usuario);
         this.reservaDao.save(reserva);
-
+        JOptionPane.showMessageDialog(null, "Reservado com sucesso!");
         //this.stage.close();
     }
-
-    /*private void CarregaUsuario() {
-        FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(this.getClass().getResource("/fxml/FXMLPrincipal.fxml"));
-                FXMLPrincipalController controller = loader.getController();
-                this.usuario = controller.getUsuarioAutenticado();
-                tfUsuario.setText(usuario.getId().toString());
-    }*/
     
     void setUsuarioAutenticado(Usuario usuario) {
         this.usuario = usuario;
-        System.out.println(usuario.getId());
+        //System.out.println(usuario.getId());
+        //tfUsuario.setText(usuario.getNome().toString());
     }
 }

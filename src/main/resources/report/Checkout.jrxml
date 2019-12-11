@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Checkout" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="888f65cf-9738-480e-bd77-8a9a1fadbfee">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Checkout"/>
+	<queryString language="SQL">
+		<![CDATA[select * from reserva as r join cliente as c on (r.cliente_id = c.idcliente) 
+inner join produtosconsumidos as pc on (pc.reserva_id = r.idreserva)
+inner join produto as p on (p.idproduto = pc.produto_id)
+where idreserva = 1]]>
+	</queryString>
+	<field name="idreserva" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="idreserva"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reserva"/>
+	</field>
+	<field name="dataentrada" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="dataentrada"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reserva"/>
+	</field>
+	<field name="datareserva" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="datareserva"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reserva"/>
+	</field>
+	<field name="datasaida" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="datasaida"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reserva"/>
+	</field>
+	<field name="motivo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="motivo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reserva"/>
+	</field>
+	<field name="valordiaria" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="valordiaria"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reserva"/>
+	</field>
+	<field name="cliente_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="cliente_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reserva"/>
+	</field>
+	<field name="quarto_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="quarto_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reserva"/>
+	</field>
+	<field name="usuario_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="usuario_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reserva"/>
+	</field>
+	<field name="idcliente" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="idcliente"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="cpf" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cpf"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="endereco" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="endereco"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="passaporte" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="passaporte"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="rg" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="rg"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="telefone" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="telefone"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtosconsumidos"/>
+	</field>
+	<field name="data_compra" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="data_compra"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtosconsumidos"/>
+	</field>
+	<field name="quantidade" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="quantidade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtosconsumidos"/>
+	</field>
+	<field name="produto_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="produto_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtosconsumidos"/>
+	</field>
+	<field name="reserva_id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="reserva_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtosconsumidos"/>
+	</field>
+	<field name="idproduto" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="idproduto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produto"/>
+	</field>
+	<field name="categoria" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="categoria"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produto"/>
+	</field>
+	<field name="descricao" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="descricao"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produto"/>
+	</field>
+	<field name="foto" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="foto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produto"/>
+	</field>
+	<field name="COLUMN_27" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produto"/>
+	</field>
+	<field name="valor" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="valor"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produto"/>
+	</field>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{idreserva}]]></groupExpression>
+		<groupHeader>
+			<band height="31">
+				<textField>
+					<reportElement x="140" y="0" width="120" height="31" uuid="f7e17f7b-7f68-4e59-b345-2663423ab909"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{data_compra}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="290" y="0" width="100" height="30" uuid="1277f3e4-7039-489f-a82c-0a29dc31f0db"/>
+					<textElement textAlignment="Center">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="480" y="1" width="74" height="30" uuid="80ff694a-6a93-4df5-bfd9-3f92aa7e872e"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{valor}*$F{quantidade}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="0" width="140" height="30" uuid="43c480f3-935b-4bbb-8e47-0592236d87f8"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group2">
+		<groupExpression><![CDATA[$F{dataentrada}]]></groupExpression>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group3">
+		<groupExpression><![CDATA[$F{datareserva}]]></groupExpression>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group4">
+		<groupExpression><![CDATA[$F{datasaida}]]></groupExpression>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="motivo">
+		<groupExpression><![CDATA[$F{motivo}]]></groupExpression>
+	</group>
+	<group name="valordiaria">
+		<groupExpression><![CDATA[$F{valordiaria}]]></groupExpression>
+	</group>
+	<group name="cliente_id">
+		<groupExpression><![CDATA[$F{cliente_id}]]></groupExpression>
+	</group>
+	<group name="quarto_id">
+		<groupExpression><![CDATA[$F{quarto_id}]]></groupExpression>
+	</group>
+	<group name="usuario_id">
+		<groupExpression><![CDATA[$F{usuario_id}]]></groupExpression>
+	</group>
+	<group name="idcliente">
+		<groupExpression><![CDATA[$F{idcliente}]]></groupExpression>
+	</group>
+	<group name="cpf">
+		<groupExpression><![CDATA[$F{cpf}]]></groupExpression>
+	</group>
+	<group name="email">
+		<groupExpression><![CDATA[$F{email}]]></groupExpression>
+	</group>
+	<group name="endereco">
+		<groupExpression><![CDATA[$F{endereco}]]></groupExpression>
+	</group>
+	<group name="nome">
+		<groupExpression><![CDATA[$F{nome}]]></groupExpression>
+	</group>
+	<group name="passaporte">
+		<groupExpression><![CDATA[$F{passaporte}]]></groupExpression>
+	</group>
+	<group name="rg">
+		<groupExpression><![CDATA[$F{rg}]]></groupExpression>
+	</group>
+	<group name="telefone">
+		<groupExpression><![CDATA[$F{telefone}]]></groupExpression>
+	</group>
+	<group name="id">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+	</group>
+	<group name="data_compra">
+		<groupExpression><![CDATA[$F{data_compra}]]></groupExpression>
+	</group>
+	<group name="quantidade">
+		<groupExpression><![CDATA[$F{quantidade}]]></groupExpression>
+	</group>
+	<group name="produto_id">
+		<groupExpression><![CDATA[$F{produto_id}]]></groupExpression>
+	</group>
+	<group name="reserva_id">
+		<groupExpression><![CDATA[$F{reserva_id}]]></groupExpression>
+	</group>
+	<group name="idproduto">
+		<groupExpression><![CDATA[$F{idproduto}]]></groupExpression>
+	</group>
+	<group name="categoria">
+		<groupExpression><![CDATA[$F{categoria}]]></groupExpression>
+	</group>
+	<group name="descricao">
+		<groupExpression><![CDATA[$F{descricao}]]></groupExpression>
+	</group>
+	<group name="foto">
+		<groupExpression><![CDATA[$F{foto}]]></groupExpression>
+	</group>
+	<group name="COLUMN_27">
+		<groupExpression><![CDATA[$F{COLUMN_27}]]></groupExpression>
+	</group>
+	<group name="valor">
+		<groupExpression><![CDATA[$F{valor}]]></groupExpression>
+	</group>
+	<background>
+		<band height="18"/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#0F2A38" uuid="36c4ea45-0217-499b-a14f-cfdeaaa3077c"/>
+				<staticText>
+					<reportElement x="110" y="10" width="370" height="50" forecolor="#FFFFFF" uuid="6d8ff846-d0f3-4345-8a67-23991041a0f0"/>
+					<textElement>
+						<font fontName="SansSerif" size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Relatório de Checkout]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="88">
+			<textField>
+				<reportElement x="120" y="10" width="150" height="20" uuid="128553c7-e96d-4b6a-abd9-c73f144d8f1c"/>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idreserva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="30" width="150" height="20" uuid="424af58f-d7b4-484d-8519-de8015b7c0fa"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="10" width="120" height="20" uuid="c2a111bf-af24-4b07-8b25-ba169672ffe0"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Código da reserva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="120" height="20" uuid="9398cdde-ddbf-4fc7-8956-c9019fa77808"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Responsável:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="50" width="140" height="20" uuid="5beff122-43e3-4bd0-84f6-16c3dea68912"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="50" width="120" height="20" uuid="998f9078-3feb-4417-9baf-069f51e580c4"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Cpf:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="390" y="30" width="164" height="20" uuid="b6cec775-5f2a-4a19-b8f2-d53416e6977c"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dataentrada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="10" width="164" height="20" uuid="873ed3fd-ee0e-4c6f-8278-333473abf8d5"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{datareserva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="50" width="164" height="20" uuid="8c35fc15-f1b0-4179-b70e-9806a846a82f"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{datasaida}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="291" y="10" width="98" height="20" uuid="4ad1b2f0-939e-4062-82ef-451f8a7af844"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[reserva:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="291" y="30" width="98" height="20" uuid="69865057-a7e0-48a9-bfc8-f17e0be6d88b"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[entrada:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="291" y="50" width="98" height="20" uuid="70b187a6-bd03-403f-ac83-6586be12da31"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[saída:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="270" y="10" width="1" height="60" uuid="8e0f741b-5a7f-4dda-bd0a-c02bff453db2"/>
+			</line>
+			<textField>
+				<reportElement x="390" y="70" width="164" height="18" uuid="9a57f560-d042-45c4-a5d2-eaa3e2016321"/>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valordiaria}+($F{valor}*$F{quantidade})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="290" y="70" width="98" height="18" uuid="12e220ea-f509-4e37-bd47-7fe6d50db229"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Valor total:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="31">
+			<staticText>
+				<reportElement x="140" y="1" width="120" height="30" uuid="abd3e9d3-a809-4905-b1c4-04cbe7429e17"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Data da compra]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="291" y="1" width="98" height="30" uuid="03d33e94-1e72-457a-9041-307d15761fbb"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Quantidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="1" width="74" height="30" uuid="efe0832c-351d-44ed-a791-e9396ac701c6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="1" width="80" height="30" uuid="4a4d2fb9-ad46-4d54-9ff6-f934ae0bbcac"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Produto]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="553" height="1" uuid="f2f05be6-2c8c-4fd2-8590-5ed97321978d"/>
+			</line>
+		</band>
+	</columnHeader>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="19">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="36b0d287-96c3-40c8-ae01-62c26267aaad"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="45056515-38be-4fa7-b10b-acaaefee3038"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="19ccba1b-da52-458a-9d2c-620874afc82b"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

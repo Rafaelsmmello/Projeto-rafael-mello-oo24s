@@ -53,7 +53,6 @@ public class FXMLComprasController implements Initializable {
     ProdutoDao produtoDao = new ProdutoDao();
     ReservaDao reservaDao = new ReservaDao();
     ProdutosConsumidos consumidos = new ProdutosConsumidos();
-    ProdutoConsumidoDao consumidosDao = new ProdutoConsumidoDao();
     
     
     List<Reserva> clientes = new ArrayList<>();
@@ -106,6 +105,7 @@ public class FXMLComprasController implements Initializable {
     
     @FXML
     private void save() {
+        ProdutoConsumidoDao consumidosDao = new ProdutoConsumidoDao();
         Reserva reserva = new Reserva();
         Produto produto = new Produto();
         reserva = reservaDao.getById(Long.parseLong(cbCliente.getValue().toString()));
@@ -116,7 +116,8 @@ public class FXMLComprasController implements Initializable {
         consumidos.setQuantidade(Integer.parseInt(tfquantidade.getText()));
         consumidosDao.save(consumidos);
         
-        JOptionPane.showMessageDialog(null, "Produto comprado com sucesso!");
+        JOptionPane.showMessageDialog(null, "compra efetivada!");
+        
         this.stage.close();
     }
 

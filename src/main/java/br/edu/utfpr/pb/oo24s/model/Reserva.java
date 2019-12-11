@@ -7,6 +7,7 @@ package br.edu.utfpr.pb.oo24s.model;
 
 import br.edu.utfpr.pb.oo24s.converter.MotivoConverter;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -17,7 +18,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -55,9 +55,21 @@ public class Reserva implements AbstractModel{
     @Column(nullable = false)
     private double valordiaria;
     
-    @ManyToOne
+    @OneToOne
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+    /*
+    private int dias;
 
+    public int getDias() {
+        return dias;
+    }
+
+    public void setDias() {
+        this.dias = Period.between(dataEntrada, dataSaida).getDays(); 
+    }
+    */
+    
     public Reserva() {
     }
 

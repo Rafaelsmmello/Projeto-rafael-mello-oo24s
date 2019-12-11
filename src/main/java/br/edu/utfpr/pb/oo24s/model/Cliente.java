@@ -5,11 +5,9 @@
  */
 package br.edu.utfpr.pb.oo24s.model;
 
-import java.util.Objects;
-import javax.persistence.CascadeType;
+import java.util.Objects; 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.Entity; 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +21,10 @@ public class Cliente implements AbstractModel{
     
     @Column(nullable = false, length = 100)
     private String nome;
-    
+    /*
+    @Column(nullable = false)
+    private Cidade cidade;
+    */
     @Column(nullable = false, length = 100)
     private String endereco;
     
@@ -59,7 +60,15 @@ public class Cliente implements AbstractModel{
     public void setReserva(Reserva reserva) {
         this.reserva = reserva;
     }
-    
+    /*
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
+    }
+     */
     public void setIdCliente(Long IdCliente) {
         this.IdCliente = IdCliente;
     }

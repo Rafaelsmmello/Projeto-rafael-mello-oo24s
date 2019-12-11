@@ -5,11 +5,16 @@ package br.edu.utfpr.pb.oo24s.controller;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import br.edu.utfpr.pb.oo24s.db.DatabaseConnection;
 import br.edu.utfpr.pb.oo24s.model.Usuario;
+import br.edu.utfpr.pb.oo24s.report.GenerateReport;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,6 +30,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  * FXML Controller class
@@ -90,11 +96,6 @@ public class FXMLPrincipalController implements Initializable {
                     loadCheckin();
                 }
         );
-        this.buttonCheckout.setOnAction(
-                (t) -> {
-                    loadCheckout();
-                }
-        );
         this.buttonHospedes.setOnAction(
                 (t) -> {
                     loadHospedes();
@@ -115,7 +116,6 @@ public class FXMLPrincipalController implements Initializable {
                     loadCompras();
                 }
         );
-        tfData = new DatePicker(LocalDate.now());
         tfData.setValue(LocalDate.now());
     }
 
@@ -129,6 +129,30 @@ public class FXMLPrincipalController implements Initializable {
             alert.setTitle(" .: JavaFX :. ");
             alert.setHeaderText("Atenção, ocorreu um erro!");
             alert.setContentText("Falha ao abrir a tela de checkin.");
+            alert.showAndWait();
+        }
+    }
+    
+    @FXML
+    private void showReport() {
+        JOptionPane.showInputDialog("Selecione o código da reserva");
+        GenerateReport generateReport = new GenerateReport();
+        InputStream file = this.getClass().getResourceAsStream("/report/Checkout.jasper");
+
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("TITULO", "Relatório de Checkout");
+        
+        DatabaseConnection conn = DatabaseConnection.getInstance();
+        try {
+            JasperViewer viewer = generateReport.getReport(
+                    conn.getConnection(), parameters, file);
+            viewer.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText("Falha ao exibir relatório!");
+            alert.setContentText("Falha ao exibir relatório!");
             alert.showAndWait();
         }
     }
@@ -154,23 +178,10 @@ public class FXMLPrincipalController implements Initializable {
             FXMLReservaController controller
                     = loader.getController();
             controller.setUsuarioAutenticado(usuario);
-            setDataPane(fadeAnimate("/fxml/FXMLReserva.fxml"));
-
+           // setDataPane(fadeAnimate("/fxml/FXMLReserva.fxml"));
+            
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-
-    private void loadCheckout() {
-        try {
-            setDataPane(fadeAnimate("/fxml/FXMLReserva.fxml")); //alterar para fxml de saída
-        } catch (Exception e) {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle(" .: JavaFX :. ");
-            alert.setHeaderText("Atenção, ocorreu um erro!");
-            alert.setContentText("Falha ao abrir a tela de categorias.");
-            alert.showAndWait();
         }
     }
 
