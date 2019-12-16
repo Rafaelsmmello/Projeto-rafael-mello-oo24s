@@ -141,7 +141,7 @@ public class FXMLReservaController implements Initializable {
         QuartoDao quartoDao = new QuartoDao();
         quartos = quartoDao.getAll();
         List<Long> quartosid = new ArrayList<>();
-        List<Integer> iguais = new ArrayList<>();
+        //List<Integer> iguais = new ArrayList<>();
         int existe;
         int x = 0;
         for (i = 0; i < quartos.size(); i++) {
@@ -149,7 +149,7 @@ public class FXMLReservaController implements Initializable {
             quartosid.add(quartos.get(i).getId());
 
             for (int j = 0; j < reservasid.size(); j++) {
-                if (reservasid.get(j).equals(Integer.parseInt(quartosid.get(i).toString()))) {
+                if (reservasid.get(j).equals(Integer.parseInt(quartosid.get(i).toString())) && reservas.get(j).getAtivo()) {
                     existe = i;
                     break;
                 }
@@ -158,7 +158,7 @@ public class FXMLReservaController implements Initializable {
                 mostraquarto.add(quartos.get(i).getId());
             }
         }
-
+        
         cbLista.setItems(FXCollections.observableArrayList(clientesid));
         cbCliente.setItems(FXCollections.observableArrayList(clientesid));
         cbQuarto.setItems(FXCollections.observableArrayList(mostraquarto));

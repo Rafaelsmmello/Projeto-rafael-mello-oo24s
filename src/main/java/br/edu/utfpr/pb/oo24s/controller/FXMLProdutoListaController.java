@@ -97,7 +97,6 @@ public class FXMLProdutoListaController implements Initializable {
                             .getResource("/fxml/FXMLCadastroProduto.fxml"));
             AnchorPane pane = (AnchorPane) loader.load();
 
-            //Criando o stage para o modal
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Cadastro de Produto");
             dialogStage.initModality(Modality.WINDOW_MODAL);

@@ -5,12 +5,15 @@ package br.edu.utfpr.pb.oo24s.controller;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import br.edu.utfpr.pb.oo24s.dao.ReservaDao;
 import br.edu.utfpr.pb.oo24s.db.DatabaseConnection;
 import br.edu.utfpr.pb.oo24s.model.Usuario;
+import br.edu.utfpr.pb.oo24s.model.Reserva;
 import br.edu.utfpr.pb.oo24s.report.GenerateReport;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -134,13 +137,25 @@ public class FXMLPrincipalController implements Initializable {
     }
     
     @FXML
-    private void showReport() {
-        JOptionPane.showInputDialog("Selecione o código da reserva");
+    private void showReport() throws URISyntaxException {
+        ReservaDao reservaDao = new ReservaDao();
+        Long cd = Long.parseLong(JOptionPane.showInputDialog("Selecione o código da reserva"));
+        
+        Reserva reserva = reservaDao.getById(cd);
+        reserva.setAtivo(Boolean.FALSE);
+        reservaDao.save(reserva);
+        JOptionPane.showMessageDialog(null,"A reserva foi finalizada");
+        
         GenerateReport generateReport = new GenerateReport();
-        InputStream file = this.getClass().getResourceAsStream("/report/Checkout.jasper");
+        InputStream file = this.getClass().getResourceAsStream("/report/Reserva_Checkout.jasper");
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("TITULO", "Relatório de Checkout");
+        parameters.put("RESERVA_ID", cd);
+        
+        
+        parameters.put("SUB_REPORT_DIR", this.getClass().getResource("/report/Checkout_sub.jasper").toURI().toString()  );
+        
         
         DatabaseConnection conn = DatabaseConnection.getInstance();
         try {
@@ -178,7 +193,6 @@ public class FXMLPrincipalController implements Initializable {
             FXMLReservaController controller
                     = loader.getController();
             controller.setUsuarioAutenticado(usuario);
-           // setDataPane(fadeAnimate("/fxml/FXMLReserva.fxml"));
             
         } catch (Exception e) {
             e.printStackTrace();

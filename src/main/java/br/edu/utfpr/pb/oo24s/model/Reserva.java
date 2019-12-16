@@ -7,7 +7,6 @@ package br.edu.utfpr.pb.oo24s.model;
 
 import br.edu.utfpr.pb.oo24s.converter.MotivoConverter;
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -18,11 +17,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Reserva.findAtivo",
+            query = "from Reserva r "
+                + " where r.ativo=true")
+})
 public class Reserva implements AbstractModel{
+    public static final String FIND_BY_ATIVO = "Reserva.findAtivo";
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idReserva;
@@ -58,6 +66,18 @@ public class Reserva implements AbstractModel{
     @OneToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+    
+    private Boolean ativo;
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+    
+    
     /*
     private int dias;
 
@@ -71,6 +91,7 @@ public class Reserva implements AbstractModel{
     */
     
     public Reserva() {
+        setAtivo(Boolean.TRUE);
     }
 
     public Long getId() {

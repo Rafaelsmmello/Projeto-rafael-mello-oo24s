@@ -23,8 +23,8 @@
             <Button fx:id="buttonCancelar" layoutX="121.0" layoutY="302.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="123.0" text="Voltar" />
             <Button fx:id="buttonSalvar" layoutX="634.0" layoutY="302.0" mnemonicParsing="false" onAction="#save" prefHeight="26.0" prefWidth="170.0" text="Salvar" />
             <TextField fx:id="tfId" editable="false" layoutX="121.0" layoutY="32.0" prefHeight="26.0" prefWidth="51.0" />
-            <TextField fx:id="tfNome" layoutX="120.0" layoutY="88.0" prefHeight="26.0" prefWidth="315.0" />
-            <TextArea fx:id="taDescricao" layoutX="120.0" layoutY="254.0" prefHeight="37.0" prefWidth="315.0" />
+            <TextField fx:id="tfNome" layoutX="121.0" layoutY="253.0" prefHeight="26.0" prefWidth="315.0" />
+            <TextArea fx:id="taDescricao" layoutX="121.0" layoutY="81.0" prefHeight="32.0" prefWidth="315.0" />
             <Label layoutX="123.0" layoutY="236.0" text="Descricao" />
             <Separator layoutX="491.0" layoutY="284.0" prefHeight="18.0" prefWidth="315.0" />
             <Label layoutX="121.0" layoutY="124.0" text="Categoria" />

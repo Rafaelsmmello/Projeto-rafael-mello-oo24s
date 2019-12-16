@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reserva_Checkout" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a8744485-ae1c-441a-8664-62fa00c74a8f">
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[Y2xpZW50ZSAsMTY3LDMwLDBmNDU5NTUwLTUxYzMtNDlkYS1hYjM5LTU4M2Y0MGM0Y2EzNjtyZXNl
+cnZhICwxNSwxNSxjMWE0OGUzNC0zN2M2LTQwYWUtOTI3YS04MmZjNGJlOThjNDA7]]>
+	</property>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="263"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="730"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Checkout"/>
+	<parameter name="SUB_REPORT_DIR" class="java.lang.String"/>
+	<parameter name="RESERVA_ID" class="java.lang.Long"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT cliente.nome,
+	reserva.datasaida,
+	reserva.datareserva,
+	reserva.dataentrada,
+	reserva.idreserva
+FROM reserva
+	INNER JOIN cliente ON 
+	 reserva.cliente_id = cliente.idcliente]]>
+	</queryString>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<field name="datasaida" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="datasaida"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reserva"/>
+	</field>
+	<field name="datareserva" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="datareserva"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reserva"/>
+	</field>
+	<field name="dataentrada" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="dataentrada"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reserva"/>
+	</field>
+	<field name="idreserva" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="idreserva"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reserva"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="72" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#0F2A38" uuid="ea0449bc-51a4-42d5-9f01-e22dd745dd23"/>
+				<staticText>
+					<reportElement x="110" y="10" width="370" height="50" forecolor="#FFFFFF" uuid="dd62a79f-a992-47bf-85ff-ee9140609345"/>
+					<textElement>
+						<font fontName="SansSerif" size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Relatório de Checkout]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="71" splitType="Stretch">
+			<textField>
+				<reportElement x="120" y="10" width="160" height="20" uuid="cf00cbf1-f608-4e40-9ff2-c93355f361d0"/>
+				<textElement textAlignment="Left">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idreserva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="30" width="160" height="20" uuid="8550a8f1-a70f-4797-817d-3436865c5da8"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="10" width="120" height="20" uuid="50488579-5673-45fc-83a2-8a193b6aef94"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Código da reserva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="120" height="20" uuid="af5732c6-527f-4697-a4ec-1b7427a04bfc"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Responsável:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="386" y="30" width="164" height="20" uuid="803345df-099c-45fb-bf97-078b54603631"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dataentrada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="386" y="10" width="164" height="20" uuid="8ce8405e-13c3-42b7-81bf-e41fe5f1cf49"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{datareserva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="386" y="50" width="164" height="20" uuid="10e4f836-1d0c-4405-b3ff-152458dc17ce"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{datasaida}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="287" y="10" width="98" height="20" uuid="7586fd94-ee03-40fd-9fe9-6e5ce0b97f99"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[reserva:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="287" y="30" width="98" height="20" uuid="9fe7b7c7-ac68-4400-81ac-f65476ae11b4"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[entrada:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="287" y="50" width="98" height="20" uuid="d244bc2e-2b1c-4079-8efe-67aa65dfea53"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[saída:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="70" width="553" height="1" uuid="95104e34-79af-4351-bb4d-284da4d01711"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="63" splitType="Stretch">
+			<subreport>
+				<reportElement x="10" y="0" width="540" height="30" uuid="980c9747-983e-49d9-b29d-20227f4b1a34"/>
+				<subreportParameter name="RESERVA_ID">
+					<subreportParameterExpression><![CDATA[$F{idreserva}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUB_REPORT_DIR}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

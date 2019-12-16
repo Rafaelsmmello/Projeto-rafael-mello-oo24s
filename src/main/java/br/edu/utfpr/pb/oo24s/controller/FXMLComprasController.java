@@ -69,7 +69,10 @@ public class FXMLComprasController implements Initializable {
         List<Long> clientesid = new ArrayList<>();
         int i;
         for (i = 0; i < clientes.size(); i++) {
-            clientesid.add(clientes.get(i).getId());
+            if(clientes.get(i).getAtivo()){
+                clientesid.add(clientes.get(i).getId());
+                
+            }
         }
         produtos = produtoDao.getAll();
         List<String> produtosnome = new ArrayList<>();
